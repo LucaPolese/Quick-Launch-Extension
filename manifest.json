@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
-    "name": "Quick tab launch",
-    "version": "0.1.0",
-    "description": "Quick tab launcher",
+    "name": "Quick URL launcher",
+    "version": "1.0.0",
+    "description": "Chrome extension to quick launch a custom list of urls simultaneously",
     "permissions": [
         "tabs", "<all_urls>", "storage"
     ],

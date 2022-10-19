@@ -5,7 +5,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // add delete button to each element
+    // get li elements
     var myNodes = document.getElementsByTagName("li");
 
     //get add button
@@ -48,16 +48,25 @@ window.addEventListener("DOMContentLoaded", () => {
     addButton.addEventListener("click", () => {
         var li = document.createElement("li");
         var inputValue = document.getElementById("myInput").value;
+        var inputValue2 = document.getElementById("myInput2").value;
         var t = document.createTextNode(inputValue);
+        var t2 = document.createTextNode(inputValue2);
 
         var a = document.createElement("a");
         a.setAttribute("href", inputValue);
         a.setAttribute("target", "_blank");
-        a.appendChild(t);
+        a.appendChild(t2);
 
         li.appendChild(a);
         if(inputValue === ''){
-            alert("You must write something!");
+            alert("You must write an URL");
+            //focus on input element
+            document.getElementById("myInput").focus();
+        }
+        if(inputValue2 === ''){
+            alert("You must write a name");
+            //focus on input element
+            document.getElementById("myInput2").focus();
         }
         else{
             if(isUrl(inputValue)){
@@ -68,6 +77,7 @@ window.addEventListener("DOMContentLoaded", () => {
             }
         }
         document.getElementById("myInput").value = "";
+        document.getElementById("myInput2").value = "";
         //update localstorage
         localStorage["urls"] = document.getElementById("urls").innerHTML;
 
