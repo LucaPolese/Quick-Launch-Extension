@@ -13,7 +13,7 @@
         }
     ],
     "browser_action": {
-        "default_title": "Color editor",
+        "default_title": "Quick URL launcher",
         "default_popup": "quick.html",
         "default_icon": {
             "32": "icon32.png"
