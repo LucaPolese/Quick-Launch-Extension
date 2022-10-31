@@ -100,7 +100,7 @@ input {
 #urls li{
     cursor: pointer;
     position: relative;
-    padding: 12px 8px 12px 40px;
+    padding: 0px 0px 0px 40px;
     background: #eee;
     font-size: 18px;
     transition: 0.2s;
@@ -164,7 +164,6 @@ input {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0 0 0 40;
 }
 
 .btn-group{
