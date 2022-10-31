@@ -40,8 +40,8 @@ window.addEventListener("DOMContentLoaded", () => {
     for(var i = 0; i < deleteBtns.length; i++){
         deleteBtns[i].onclick = function(){
             if (confirm("Are you sure you want to delete this item?")) {
-                var delElem = this.parentElement.parentElement;
-                delElem.remove();
+                var delElem = this.parentElement;
+                delElem.parentElement.remove();
                 localStorage["urls"] = document.getElementById("urls").innerHTML;
             }
             else {
@@ -115,7 +115,7 @@ window.addEventListener("DOMContentLoaded", () => {
             deleteBtns[i].onclick = function(){
                 if (confirm("Are you sure you want to delete this item?")) {
                     var delElem = this.parentElement;
-                    delElem.remove();
+                    delElem.parentElement.remove();
                     localStorage["urls"] = document.getElementById("urls").innerHTML;
                 }
                 else {
