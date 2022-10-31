@@ -26,7 +26,7 @@ window.addEventListener("DOMContentLoaded", () => {
         div.className = "btn-group";
 
         var hideBtn = document.createElement("button");
-        var hideTxt = document.createTextNode("hide");
+        var hideTxt = document.createTextNode("Hide");
         hideBtn.className = "hide";
         hideBtn.appendChild(hideTxt);
         div.appendChild(hideBtn);
@@ -63,11 +63,11 @@ window.addEventListener("DOMContentLoaded", () => {
             // if it has hidden-url class also
             if(hideElem.parentElement.classList.contains("hidden-url")){
                 hideElem.parentElement.classList.remove("hidden-url");
-                this.innerHTML = "hide";
+                this.innerHTML = "Hide";
             }
             else{
                 hideElem.parentElement.classList.add("hidden-url");
-                this.innerHTML = "show";
+                this.innerHTML = "Show";
             }
 
             localStorage["urls"] = document.getElementById("urls").innerHTML;
@@ -123,7 +123,7 @@ window.addEventListener("DOMContentLoaded", () => {
         div.className = "btn-group";
 
         var hideBtn = document.createElement("button");
-        var hideTxt = document.createTextNode("hide");
+        var hideTxt = document.createTextNode("Hide");
         hideBtn.className = "hide";
         hideBtn.appendChild(hideTxt);
         div.appendChild(hideBtn);
@@ -154,12 +154,12 @@ window.addEventListener("DOMContentLoaded", () => {
                 var hideElem = this.parentElement;
                 if(hideElem.parentElement.classList.contains("hidden-url")){
                     hideElem.parentElement.classList.remove("hidden-url");
-                    this.innerHTML = "hide";
+                    this.innerHTML = "Hide";
                 }
                 else{
                     hideElem.parentElement.classList.add("hidden-url");
                     // change text inside the current button
-                    this.innerHTML = "show";
+                    this.innerHTML = "Show";
                 }
                     localStorage["urls"] = document.getElementById("urls").innerHTML;
             }
