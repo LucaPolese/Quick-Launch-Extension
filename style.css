@@ -128,11 +128,15 @@ input {
 }
 
 .delete { 
+    font-size: 16px;
+    cursor: pointer;
+    background: transparent;
     display: block;
     position: absolute;
+    border: none;
     right: 0;
     top : 0;
-    padding: 12px 16px 12px 16px;
+    padding: 15px 16px 12px 16px;
 }
 
 .delete:hover {

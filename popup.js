@@ -16,11 +16,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
     //add delete button to each element
     for(var i = 0; i < myNodes.length; i++){
-        var span = document.createElement("span");
+        var btn = document.createElement("button");
         var txt = document.createTextNode("\u00D7");
-        span.className = "delete";
-        span.appendChild(txt);
-        myNodes[i].appendChild(span);
+        btn.className = "delete";
+        btn.appendChild(txt);
+        myNodes[i].appendChild(btn);
     }
 
     // click on delete button lo delete the current list item
@@ -81,11 +81,11 @@ window.addEventListener("DOMContentLoaded", () => {
         //update localstorage
         localStorage["urls"] = document.getElementById("urls").innerHTML;
 
-        var span = document.createElement("span");
+        var btn = document.createElement("button");
         var txt = document.createTextNode("\u00D7");
-        span.className = "delete";
-        span.appendChild(txt);
-        li.appendChild(span);
+        btn.className = "delete";
+        btn.appendChild(txt);
+        li.appendChild(btn);
 
         for(var i = 0; i < deleteBtns.length; i++){
             deleteBtns[i].onclick = function(){
