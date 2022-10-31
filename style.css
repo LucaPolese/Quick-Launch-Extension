@@ -128,11 +128,10 @@ input {
 }
 
 .delete { 
+    display: inline;
     font-size: 16px;
     cursor: pointer;
     background: transparent;
-    display: block;
-    position: absolute;
     border: none;
     right: 0;
     top : 0;
@@ -143,3 +142,23 @@ input {
     background-color: #f44336;
     color: white;
 }
+
+.inline-li{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-group{
+    flex: 0 1 auto;
+    flex-basis: content;
+    float: right;
+}
+
+/* Clear floats (clearfix hack) */
+.btnGroup:after {
+    content: "";
+    clear: both;
+    display: table;
+  }

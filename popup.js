@@ -14,13 +14,25 @@ window.addEventListener("DOMContentLoaded", () => {
     //get launcher button
     var launcherButton = document.getElementById("launcherBtn");
 
-    //add delete button to each element
+    //add delete and hide button to each element
     for(var i = 0; i < myNodes.length; i++){
-        var btn = document.createElement("button");
-        var txt = document.createTextNode("\u00D7");
-        btn.className = "delete";
-        btn.appendChild(txt);
-        myNodes[i].appendChild(btn);
+
+        var div = document.createElement("div");
+        div.className = "btn-group";
+
+        var hideBtn = document.createElement("button");
+        var hideTxt = document.createTextNode("hide");
+        hideBtn.className = "delete";
+        hideBtn.appendChild(hideTxt);
+        div.appendChild(hideBtn);
+        
+        var delBtn = document.createElement("button");
+        var delTxt = document.createTextNode("\u00D7");
+        delBtn.className = "delete";
+        delBtn.appendChild(delTxt);
+        div.appendChild(delBtn);
+
+        myNodes[i].appendChild(div);
     }
 
     // click on delete button lo delete the current list item
@@ -47,6 +59,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // function to add new list item when AddButton is clicked as event listener
     addButton.addEventListener("click", () => {
         var li = document.createElement("li");
+        li.className = "inline-li";
         var inputValue = document.getElementById("myInput").value;
         var inputValue2 = document.getElementById("myInput2").value;
         var t = document.createTextNode(inputValue);
@@ -81,11 +94,22 @@ window.addEventListener("DOMContentLoaded", () => {
         //update localstorage
         localStorage["urls"] = document.getElementById("urls").innerHTML;
 
-        var btn = document.createElement("button");
-        var txt = document.createTextNode("\u00D7");
-        btn.className = "delete";
-        btn.appendChild(txt);
-        li.appendChild(btn);
+        var div = document.createElement("div");
+        div.className = "btn-group";
+
+        var hideBtn = document.createElement("button");
+        var hideTxt = document.createTextNode("hide");
+        hideBtn.className = "delete";
+        hideBtn.appendChild(hideTxt);
+        div.appendChild(hideBtn);
+        
+        var delBtn = document.createElement("button");
+        var delTxt = document.createTextNode("\u00D7");
+        delBtn.className = "delete";
+        delBtn.appendChild(delTxt);
+        div.appendChild(delBtn);
+
+        li.appendChild(div);
 
         for(var i = 0; i < deleteBtns.length; i++){
             deleteBtns[i].onclick = function(){
