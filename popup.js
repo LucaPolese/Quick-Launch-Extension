@@ -60,7 +60,7 @@ window.addEventListener("DOMContentLoaded", () => {
     for(var i = 0; i < hideBtns.length; i++){
         hideBtns[i].onclick = function(){
             var hideElem = this.parentElement;
-            // if it has hidden-url; class also
+            // if it has hidden-url class also
             if(hideElem.parentElement.classList.contains("hidden-url")){
                 hideElem.parentElement.classList.remove("hidden-url");
                 this.innerHTML = "hide";
@@ -168,7 +168,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // function to launch all the urls in the list when launcherButton is clicked as event listener
     launcherButton.addEventListener("click", () => {
-        // take the a tag only if the li element has not the class hidden-url
+        // take the a tags only if the li parent element has not the class hidden-url
         var activeLinks = document.querySelectorAll("li:not(.hidden-url) a");
         for(var i = 0; i < activeLinks.length; i++){
             chrome.tabs.create({url: activeLinks[i].href});
