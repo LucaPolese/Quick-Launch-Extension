@@ -50,6 +50,24 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    //click on hide button to give a text-decoration: line-through; to the current list item and bolder color
+    var hideBtns = document.getElementsByClassName("hide");
+    for(var i = 0; i < hideBtns.length; i++){
+        hideBtns[i].onclick = function(){
+            var hideElem = this.parentElement;
+            if(hideElem.parentElement.style.textDecoration == "line-through"){
+                hideElem.parentElement.style.textDecoration = "none";
+                hideElem.parentElement.style.color = "black";
+            }
+            else{
+                hideElem.parentElement.style.textDecoration = "line-through";
+                hideElem.parentElement.style.color = "red";
+            }
+            localStorage["urls"] = document.getElementById("urls").innerHTML;
+        }
+    }
+
+
     // function that validate a url
     function isUrl(s) {
         var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
@@ -123,6 +141,21 @@ window.addEventListener("DOMContentLoaded", () => {
                 }
             }
         }
+
+        for(var i = 0; i < hideBtns.length; i++){
+            hideBtns[i].onclick = function(){
+                var hideElem = this.parentElement;
+                if(hideElem.parentElement.style.textDecoration == "line-through"){
+                    hideElem.parentElement.style.textDecoration = "none";
+                    hideElem.parentElement.style.color = "black";
+                }
+                else{
+                    hideElem.parentElement.style.textDecoration = "line-through";
+                    hideElem.parentElement.style.color = "red";
+                }
+                localStorage["urls"] = document.getElementById("urls").innerHTML;
+            }
+    }
     });
 
     // function to launch all the urls in the list when launcherButton is clicked as event listener
