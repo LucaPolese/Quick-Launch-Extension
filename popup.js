@@ -14,13 +14,30 @@ window.addEventListener("DOMContentLoaded", () => {
     //get launcher button
     var launcherButton = document.getElementById("launcherBtn");
 
-    //add delete button to each element
+    //add delete and hide button to each element
     for(var i = 0; i < myNodes.length; i++){
-        var btn = document.createElement("button");
-        var txt = document.createTextNode("\u00D7");
-        btn.className = "delete";
-        btn.appendChild(txt);
-        myNodes[i].appendChild(btn);
+
+        //if it has the div already, skip it
+        if(myNodes[i].getElementsByTagName("div").length > 0){
+            continue;
+        }
+
+        var div = document.createElement("div");
+        div.className = "btn-group";
+
+        var hideBtn = document.createElement("button");
+        var hideTxt = document.createTextNode("Hide");
+        hideBtn.className = "hide";
+        hideBtn.appendChild(hideTxt);
+        div.appendChild(hideBtn);
+        
+        var delBtn = document.createElement("button");
+        var delTxt = document.createTextNode("\u00D7");
+        delBtn.className = "delete";
+        delBtn.appendChild(delTxt);
+        div.appendChild(delBtn);
+
+        myNodes[i].appendChild(div);
     }
 
     // click on delete button lo delete the current list item
@@ -29,7 +46,7 @@ window.addEventListener("DOMContentLoaded", () => {
         deleteBtns[i].onclick = function(){
             if (confirm("Are you sure you want to delete this item?")) {
                 var delElem = this.parentElement;
-                delElem.remove();
+                delElem.parentElement.remove();
                 localStorage["urls"] = document.getElementById("urls").innerHTML;
             }
             else {
@@ -37,6 +54,26 @@ window.addEventListener("DOMContentLoaded", () => {
             }
         }
     }
+
+    //click on hide button to give a text-decoration: line-through; to the current list item and bolder color
+    var hideBtns = document.getElementsByClassName("hide");
+    for(var i = 0; i < hideBtns.length; i++){
+        hideBtns[i].onclick = function(){
+            var hideElem = this.parentElement;
+            // if it has hidden-url class also
+            if(hideElem.parentElement.classList.contains("hidden-url")){
+                hideElem.parentElement.classList.remove("hidden-url");
+                this.innerHTML = "Hide";
+            }
+            else{
+                hideElem.parentElement.classList.add("hidden-url");
+                this.innerHTML = "Show";
+            }
+
+            localStorage["urls"] = document.getElementById("urls").innerHTML;
+        }
+    }
+
 
     // function that validate a url
     function isUrl(s) {
@@ -47,6 +84,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // function to add new list item when AddButton is clicked as event listener
     addButton.addEventListener("click", () => {
         var li = document.createElement("li");
+        li.className = "inline-li";
         var inputValue = document.getElementById("myInput").value;
         var inputValue2 = document.getElementById("myInput2").value;
         var t = document.createTextNode(inputValue);
@@ -81,17 +119,28 @@ window.addEventListener("DOMContentLoaded", () => {
         //update localstorage
         localStorage["urls"] = document.getElementById("urls").innerHTML;
 
-        var btn = document.createElement("button");
-        var txt = document.createTextNode("\u00D7");
-        btn.className = "delete";
-        btn.appendChild(txt);
-        li.appendChild(btn);
+        var div = document.createElement("div");
+        div.className = "btn-group";
+
+        var hideBtn = document.createElement("button");
+        var hideTxt = document.createTextNode("Hide");
+        hideBtn.className = "hide";
+        hideBtn.appendChild(hideTxt);
+        div.appendChild(hideBtn);
+        
+        var delBtn = document.createElement("button");
+        var delTxt = document.createTextNode("\u00D7");
+        delBtn.className = "delete";
+        delBtn.appendChild(delTxt);
+        div.appendChild(delBtn);
+
+        li.appendChild(div);
 
         for(var i = 0; i < deleteBtns.length; i++){
             deleteBtns[i].onclick = function(){
                 if (confirm("Are you sure you want to delete this item?")) {
                     var delElem = this.parentElement;
-                    delElem.remove();
+                    delElem.parentElement.remove();
                     localStorage["urls"] = document.getElementById("urls").innerHTML;
                 }
                 else {
@@ -99,13 +148,30 @@ window.addEventListener("DOMContentLoaded", () => {
                 }
             }
         }
+
+        for(var i = 0; i < hideBtns.length; i++){
+            hideBtns[i].onclick = function(){
+                var hideElem = this.parentElement;
+                if(hideElem.parentElement.classList.contains("hidden-url")){
+                    hideElem.parentElement.classList.remove("hidden-url");
+                    this.innerHTML = "Hide";
+                }
+                else{
+                    hideElem.parentElement.classList.add("hidden-url");
+                    // change text inside the current button
+                    this.innerHTML = "Show";
+                }
+                    localStorage["urls"] = document.getElementById("urls").innerHTML;
+            }
+        }
     });
 
     // function to launch all the urls in the list when launcherButton is clicked as event listener
     launcherButton.addEventListener("click", () => {
-        var myNodes = document.getElementsByTagName("a");
-        for(var i = 0; i < myNodes.length; i++){
-            chrome.tabs.create({url: myNodes[i].href});
+        // take the a tags only if the li parent element has not the class hidden-url
+        var activeLinks = document.querySelectorAll("li:not(.hidden-url) a");
+        for(var i = 0; i < activeLinks.length; i++){
+            chrome.tabs.create({url: activeLinks[i].href});
         }
     });
 

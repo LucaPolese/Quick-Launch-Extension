@@ -98,9 +98,8 @@ input {
 }
 
 #urls li{
-    cursor: pointer;
     position: relative;
-    padding: 12px 8px 12px 40px;
+    padding: 0px 0px 0px 40px;
     background: #eee;
     font-size: 18px;
     transition: 0.2s;
@@ -117,6 +116,12 @@ input {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; 
+    font-weight: bold;
+}
+
+.hidden-url a{
+    text-decoration: line-through;
+    color: #ccc;
 }
 
 #urls li:nth-child(even){
@@ -128,11 +133,10 @@ input {
 }
 
 .delete { 
+    display: inline;
     font-size: 16px;
     cursor: pointer;
     background: transparent;
-    display: block;
-    position: absolute;
     border: none;
     right: 0;
     top : 0;
@@ -142,4 +146,40 @@ input {
 .delete:hover {
     background-color: #f44336;
     color: white;
+}
+
+.hide {
+    display: inline;
+    font-size: 16px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    right: 0;
+    top : 0;
+    padding: 15px 16px 12px 16px;
+}
+
+.hide:hover {
+    background-color: #505050;
+    color: white;
+}
+
+.inline-li{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-group{
+    flex: 0 1 auto;
+    flex-basis: content;
+    float: right;
+}
+
+/* Clear floats (clearfix hack) */
+.btnGroup:after {
+    content: "";
+    clear: both;
+    display: table;
 }
