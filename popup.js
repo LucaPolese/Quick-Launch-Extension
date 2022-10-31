@@ -17,6 +17,11 @@ window.addEventListener("DOMContentLoaded", () => {
     //add delete and hide button to each element
     for(var i = 0; i < myNodes.length; i++){
 
+        //if it has the div already, skip it
+        if(myNodes[i].getElementsByTagName("div").length > 0){
+            continue;
+        }
+
         var div = document.createElement("div");
         div.className = "btn-group";
 
@@ -55,14 +60,16 @@ window.addEventListener("DOMContentLoaded", () => {
     for(var i = 0; i < hideBtns.length; i++){
         hideBtns[i].onclick = function(){
             var hideElem = this.parentElement;
-            if(hideElem.parentElement.style.textDecoration == "line-through"){
-                hideElem.parentElement.style.textDecoration = "none";
-                hideElem.parentElement.style.color = "black";
+            // if it has hidden-url; class also
+            if(hideElem.parentElement.classList.contains("hidden-url")){
+                hideElem.parentElement.classList.remove("hidden-url");
+                this.innerHTML = "hide";
             }
             else{
-                hideElem.parentElement.style.textDecoration = "line-through";
-                hideElem.parentElement.style.color = "red";
+                hideElem.parentElement.classList.add("hidden-url");
+                this.innerHTML = "show";
             }
+
             localStorage["urls"] = document.getElementById("urls").innerHTML;
         }
     }
@@ -145,24 +152,26 @@ window.addEventListener("DOMContentLoaded", () => {
         for(var i = 0; i < hideBtns.length; i++){
             hideBtns[i].onclick = function(){
                 var hideElem = this.parentElement;
-                if(hideElem.parentElement.style.textDecoration == "line-through"){
-                    hideElem.parentElement.style.textDecoration = "none";
-                    hideElem.parentElement.style.color = "black";
+                if(hideElem.parentElement.classList.contains("hidden-url")){
+                    hideElem.parentElement.classList.remove("hidden-url");
+                    this.innerHTML = "hide";
                 }
                 else{
-                    hideElem.parentElement.style.textDecoration = "line-through";
-                    hideElem.parentElement.style.color = "red";
+                    hideElem.parentElement.classList.add("hidden-url");
+                    // change text inside the current button
+                    this.innerHTML = "show";
                 }
-                localStorage["urls"] = document.getElementById("urls").innerHTML;
+                    localStorage["urls"] = document.getElementById("urls").innerHTML;
             }
-    }
+        }
     });
 
     // function to launch all the urls in the list when launcherButton is clicked as event listener
     launcherButton.addEventListener("click", () => {
-        var myNodes = document.getElementsByTagName("a");
-        for(var i = 0; i < myNodes.length; i++){
-            chrome.tabs.create({url: myNodes[i].href});
+        // take the a tag only if the li element has not the class hidden-url
+        var activeLinks = document.querySelectorAll("li:not(.hidden-url) a");
+        for(var i = 0; i < activeLinks.length; i++){
+            chrome.tabs.create({url: activeLinks[i].href});
         }
     });
 

@@ -98,7 +98,6 @@ input {
 }
 
 #urls li{
-    cursor: pointer;
     position: relative;
     padding: 0px 0px 0px 40px;
     background: #eee;
@@ -117,6 +116,11 @@ input {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; 
+}
+
+.hidden-url a{
+    text-decoration: line-through;
+    color: #ccc;
 }
 
 #urls li:nth-child(even){
@@ -177,4 +181,4 @@ input {
     content: "";
     clear: both;
     display: table;
-  }
+}
