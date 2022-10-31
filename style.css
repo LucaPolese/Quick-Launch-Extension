@@ -143,11 +143,28 @@ input {
     color: white;
 }
 
+.hide {
+    display: inline;
+    font-size: 16px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    right: 0;
+    top : 0;
+    padding: 15px 16px 12px 16px;
+}
+
+.hide:hover {
+    background-color: #505050;
+    color: white;
+}
+
 .inline-li{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding: 0 0 0 40;
 }
 
 .btn-group{

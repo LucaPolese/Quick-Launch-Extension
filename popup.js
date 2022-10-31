@@ -22,7 +22,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         var hideBtn = document.createElement("button");
         var hideTxt = document.createTextNode("hide");
-        hideBtn.className = "delete";
+        hideBtn.className = "hide";
         hideBtn.appendChild(hideTxt);
         div.appendChild(hideBtn);
         
@@ -40,7 +40,7 @@ window.addEventListener("DOMContentLoaded", () => {
     for(var i = 0; i < deleteBtns.length; i++){
         deleteBtns[i].onclick = function(){
             if (confirm("Are you sure you want to delete this item?")) {
-                var delElem = this.parentElement;
+                var delElem = this.parentElement.parentElement;
                 delElem.remove();
                 localStorage["urls"] = document.getElementById("urls").innerHTML;
             }
@@ -99,7 +99,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         var hideBtn = document.createElement("button");
         var hideTxt = document.createTextNode("hide");
-        hideBtn.className = "delete";
+        hideBtn.className = "hide";
         hideBtn.appendChild(hideTxt);
         div.appendChild(hideBtn);
         
