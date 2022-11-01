@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Quick URL launcher",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Chrome extension to quick launch a custom list of urls simultaneously",
     "permissions": [
         "tabs", "<all_urls>", "storage"
@@ -16,8 +16,8 @@
         "default_title": "Quick URL launcher",
         "default_popup": "quick.html",
         "default_icon": {
-            "32": "icon32.png"
+            "48": "icons/icon48.png"
         }
     },
-    "icons": { "32": "icon32.png" }
+    "icons": { "48": "icons/icon48.png" }
 }
